@@ -2,7 +2,9 @@
 Documentation     Cobertura específica de pontos e caixinha.
 Resource          ../resources/keywords.resource
 Resource          ../resources/auth.resource
-Suite Setup       Create API Session
+Suite Setup    Criar Sessão
+
+
 
 *** Test Cases ***
 Caixinha - depósito e saque inválidos

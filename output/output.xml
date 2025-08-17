@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.3 on win32)" generated="2025-08-17T19:44:41.718421" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Teste_API_rethink\teste_api_rethink\tests">
+<suite id="s1-s1" name="Caixinha And Points" source="C:\Teste_API_rethink\teste_api_rethink\tests\caixinha_and_points.robot">
+<kw name="Criar Sessão" owner="auth" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:42.291549" level="INFO">Creating Session using : alias=api, url=https://points-app-backend.vercel.app, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>disable_warnings=1</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-08-17T19:44:42.291549" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2025-08-17T19:44:42.290547" elapsed="0.001002"/>
+</kw>
+<test id="s1-s1-t1" name="Caixinha - depósito e saque inválidos" line="10">
+<kw name="Gen" owner="cpf">
+<msg time="2025-08-17T19:44:42.292548" level="INFO">${cpf} = 24435993376</msg>
+<var>${cpf}</var>
+<status status="PASS" start="2025-08-17T19:44:42.292548" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-08-17T19:44:42.293554" level="INFO">${email} = user.caixinha+24435993376@example.com</msg>
+<var>${email}</var>
+<arg>user.caixinha+${cpf}@example.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-08-17T19:44:42.293554" elapsed="0.000000"/>
+</kw>
+<kw name="Register User" owner="auth">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-17T19:44:42.294546" level="INFO">${payload} = {'cpf': '24435993376', 'email': 'User Pig', 'senha': 'user.caixinha+24435993376@example.com'}</msg>
+<var>${payload}</var>
+<arg>cpf=${cpf}</arg>
+<arg>email=${email}</arg>
+<arg>senha=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-17T19:44:42.294546" elapsed="0.000000"/>
+</kw>
+<kw name="Fazer Cadastro" owner="auth">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:42.575757" level="INFO">POST Request : url=https://points-app-backend.vercel.app/cadastro 
+ path_url=/cadastro 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '93', 'Content-Type': 'application/json'} 
+ body=b'{"cpf": "24435993376", "email": "User Pig", "senha": "user.caixinha+24435993376@example.com"}' 
+ </msg>
+<msg time="2025-08-17T19:44:42.575757" level="INFO">POST Response : url=https://points-app-backend.vercel.app/cadastro 
+ status=400, reason=Bad Request 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Content-Length': '38', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Sun, 17 Aug 2025 22:44:26 GMT', 'Etag': 'W/"26-MA+lncNq9iPyqVsf0a7Ul4FWBdQ"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'gru1::iad1::zt84x-1755470666825-3b8bf30bd997'} 
+ body={"error":"Nome completo obrigatório"} 
+ </msg>
+<msg time="2025-08-17T19:44:42.575757" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/cadastro</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-08-17T19:44:42.294546" elapsed="0.282989">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:42.577535" elapsed="0.001058"/>
+</return>
+<var>${resp}</var>
+<arg>${payload}</arg>
+<status status="FAIL" start="2025-08-17T19:44:42.294546" elapsed="0.284047">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:42.578593" elapsed="0.000000"/>
+</return>
+<var>${r}</var>
+<arg>${cpf}</arg>
+<arg>User Pig</arg>
+<arg>${email}</arg>
+<status status="FAIL" start="2025-08-17T19:44:42.293554" elapsed="0.285039">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${t}</var>
+<arg>${r.json()}</arg>
+<arg>confirmToken</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.579596" elapsed="0.000000"/>
+</kw>
+<kw name="Confirm Email">
+<arg>${t}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.579596" elapsed="0.000000"/>
+</kw>
+<kw name="Login">
+<var>${login}</var>
+<arg>${email}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.580592" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${token}</var>
+<arg>${login.json()}</arg>
+<arg>token</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.580592" elapsed="0.000000"/>
+</kw>
+<kw name="Set Auth Token">
+<arg>${token}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.581593" elapsed="0.000000"/>
+</kw>
+<kw name="Piggy Deposit">
+<var>${r}</var>
+<arg>-10</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.581593" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${r.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.582592" elapsed="0.000000"/>
+</kw>
+<kw name="Piggy Withdraw">
+<var>${r}</var>
+<arg>-5</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.582592" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${r.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.582592" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-08-17T19:44:42.291549" elapsed="0.291043">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</test>
+<test id="s1-s1-t2" name="Enviar pontos - CPF inexistente" line="26">
+<kw name="Send Points" owner="keywords">
+<msg time="2025-08-17T19:44:42.584592" level="FAIL">Keyword 'keywords.Send Points' expected 3 arguments, got 2.</msg>
+<var>${r}</var>
+<arg>00000000191</arg>
+<arg>10</arg>
+<status status="FAIL" start="2025-08-17T19:44:42.584592" elapsed="0.000000">Keyword 'keywords.Send Points' expected 3 arguments, got 2.</status>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${r.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.584592" elapsed="0.001000"/>
+</kw>
+<status status="FAIL" start="2025-08-17T19:44:42.583581" elapsed="0.002011">Keyword 'keywords.Send Points' expected 3 arguments, got 2.</status>
+</test>
+<doc>Cobertura específica de pontos e caixinha.</doc>
+<status status="FAIL" start="2025-08-17T19:44:41.757793" elapsed="0.829711"/>
+</suite>
+<suite id="s1-s2" name="E2E Journeys" source="C:\Teste_API_rethink\teste_api_rethink\tests\e2e_journeys.robot">
+<kw name="Criar Sessão" owner="auth" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:42.601693" level="INFO">Creating Session using : alias=api, url=https://points-app-backend.vercel.app, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>disable_warnings=1</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-08-17T19:44:42.600584" elapsed="0.001109"/>
+</kw>
+<status status="PASS" start="2025-08-17T19:44:42.600584" elapsed="0.001109"/>
+</kw>
+<test id="s1-s2-t1" name="E2E - Cadastro→Confirmação→Login→Enviar pontos→Caixinha→Extratos→Saldo→Excluir" line="9">
+<kw name="Set Test Variable" owner="BuiltIn" type="SETUP">
+<msg time="2025-08-17T19:44:42.602689" level="INFO">${NOW} = None</msg>
+<arg>${NOW}</arg>
+<arg>${None}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2025-08-17T19:44:42.602689" elapsed="0.000996"/>
+</kw>
+<kw name="Gen" owner="cpf">
+<msg time="2025-08-17T19:44:42.603685" level="INFO">${cpf_a} = 90532653092</msg>
+<var>${cpf_a}</var>
+<status status="PASS" start="2025-08-17T19:44:42.603685" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-08-17T19:44:42.605058" level="INFO">${email_a} = user.a+90532653092@example.com</msg>
+<var>${email_a}</var>
+<arg>user.a+${cpf_a}@example.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-08-17T19:44:42.604861" elapsed="0.000197"/>
+</kw>
+<kw name="Register User" owner="auth">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-17T19:44:42.606962" level="INFO">${payload} = {'cpf': '90532653092', 'email': 'User A Teste', 'senha': 'user.a+90532653092@example.com'}</msg>
+<var>${payload}</var>
+<arg>cpf=${cpf}</arg>
+<arg>email=${email}</arg>
+<arg>senha=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-17T19:44:42.605621" elapsed="0.001341"/>
+</kw>
+<kw name="Fazer Cadastro" owner="auth">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:42.942117" level="INFO">POST Request : url=https://points-app-backend.vercel.app/cadastro 
+ path_url=/cadastro 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '90', 'Content-Type': 'application/json'} 
+ body=b'{"cpf": "90532653092", "email": "User A Teste", "senha": "user.a+90532653092@example.com"}' 
+ </msg>
+<msg time="2025-08-17T19:44:42.942117" level="INFO">POST Response : url=https://points-app-backend.vercel.app/cadastro 
+ status=400, reason=Bad Request 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Content-Length': '38', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Sun, 17 Aug 2025 22:44:27 GMT', 'Etag': 'W/"26-MA+lncNq9iPyqVsf0a7Ul4FWBdQ"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'gru1::iad1::lm6cb-1755470667127-e17bf100c0dd'} 
+ body={"error":"Nome completo obrigatório"} 
+ </msg>
+<msg time="2025-08-17T19:44:42.942117" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/cadastro</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-08-17T19:44:42.607912" elapsed="0.335566">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:42.943478" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${payload}</arg>
+<status status="FAIL" start="2025-08-17T19:44:42.606962" elapsed="0.336516">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:42.943478" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${cpf_a}</arg>
+<arg>User A Teste</arg>
+<arg>${email_a}</arg>
+<status status="FAIL" start="2025-08-17T19:44:42.605621" elapsed="0.337857">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.944874" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${confirm_token_a}</var>
+<arg>${resp.json()}</arg>
+<arg>confirmToken</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.944874" elapsed="0.000000"/>
+</kw>
+<kw name="Confirm Email">
+<var>${resp}</var>
+<arg>${confirm_token_a}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.945783" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.945783" elapsed="0.000000"/>
+</kw>
+<kw name="Login">
+<var>${resp}</var>
+<arg>${email_a}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.945783" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.945783" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${token}</var>
+<arg>${resp.json()}</arg>
+<arg>token</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.945783" elapsed="0.000000"/>
+</kw>
+<kw name="Set Auth Token">
+<arg>${token}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.947111" elapsed="0.000000"/>
+</kw>
+<kw name="Gen" owner="cpf">
+<var>${cpf_b}</var>
+<status status="NOT RUN" start="2025-08-17T19:44:42.947111" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${email_b}</var>
+<arg>user.b+${cpf_b}@example.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.947111" elapsed="0.000000"/>
+</kw>
+<kw name="Register User" owner="auth">
+<var>${resp}</var>
+<arg>${cpf_b}</arg>
+<arg>User B Teste</arg>
+<arg>${email_b}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.947111" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.947111" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${confirm_token_b}</var>
+<arg>${resp.json()}</arg>
+<arg>confirmToken</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.948108" elapsed="0.000000"/>
+</kw>
+<kw name="Confirm Email">
+<var>${resp}</var>
+<arg>${confirm_token_b}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.948108" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.948108" elapsed="0.000000"/>
+</kw>
+<kw name="Send Points" owner="keywords">
+<var>${resp}</var>
+<arg>${cpf_b}</arg>
+<arg>30</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.948108" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.949112" elapsed="0.000000"/>
+</kw>
+<kw name="Piggy Deposit">
+<var>${resp}</var>
+<arg>20</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.949112" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.950113" elapsed="0.000000"/>
+</kw>
+<kw name="Piggy Withdraw">
+<var>${resp}</var>
+<arg>5</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.950113" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.950113" elapsed="0.000000"/>
+</kw>
+<kw name="Get Points Extrato">
+<var>${resp}</var>
+<status status="NOT RUN" start="2025-08-17T19:44:42.950113" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.951109" elapsed="0.000000"/>
+</kw>
+<kw name="Length Should Be Greater Than">
+<arg>${resp.json()}</arg>
+<arg>0</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.951109" elapsed="0.000000"/>
+</kw>
+<kw name="Piggy Extrato">
+<var>${resp}</var>
+<status status="NOT RUN" start="2025-08-17T19:44:42.951109" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.951109" elapsed="0.000000"/>
+</kw>
+<kw name="Length Should Be Greater Than">
+<arg>${resp.json()}</arg>
+<arg>0</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:42.951109" elapsed="0.000000"/>
+</kw>
+<kw name="Get General Balance">
+<var>${resp}</var>
+<status status="NOT RUN" start="2025-08-17T19:44:42.952108" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.952108" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${resp.json()}</arg>
+<arg>normal_balance</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.952108" elapsed="0.000000"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${resp.json()}</arg>
+<arg>piggy_bank_balance</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.952108" elapsed="0.000000"/>
+</kw>
+<kw name="Delete Account">
+<var>${resp}</var>
+<status status="NOT RUN" start="2025-08-17T19:44:42.952108" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:42.952108" elapsed="0.000000"/>
+</kw>
+<doc>Cria 2 usuários, confirma email, autentica e executa a jornada completa.</doc>
+<status status="FAIL" start="2025-08-17T19:44:42.601693" elapsed="0.351414">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</test>
+<doc>Jornadas ponta-a-ponta seguindo a documentação oficial.</doc>
+<status status="FAIL" start="2025-08-17T19:44:42.588702" elapsed="0.365414"/>
+</suite>
+<suite id="s1-s3" name="Negative Tests" source="C:\Teste_API_rethink\teste_api_rethink\tests\negative_tests.robot">
+<kw name="Criar Sessão" owner="auth" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:42.967730" level="INFO">Creating Session using : alias=api, url=https://points-app-backend.vercel.app, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>disable_warnings=1</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-08-17T19:44:42.966729" elapsed="0.001001"/>
+</kw>
+<status status="PASS" start="2025-08-17T19:44:42.966729" elapsed="0.001001"/>
+</kw>
+<test id="s1-s3-t1" name="Cadastro - CPF inválido" line="9">
+<kw name="Register User" owner="auth">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-17T19:44:42.968730" level="INFO">${payload} = {'cpf': '11111111111', 'email': 'Fulano da Silva', 'senha': 'invalido+cpf@example.com'}</msg>
+<var>${payload}</var>
+<arg>cpf=${cpf}</arg>
+<arg>email=${email}</arg>
+<arg>senha=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-17T19:44:42.968730" elapsed="0.000000"/>
+</kw>
+<kw name="Fazer Cadastro" owner="auth">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:43.248947" level="INFO">POST Request : url=https://points-app-backend.vercel.app/cadastro 
+ path_url=/cadastro 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '87', 'Content-Type': 'application/json'} 
+ body=b'{"cpf": "11111111111", "email": "Fulano da Silva", "senha": "invalido+cpf@example.com"}' 
+ </msg>
+<msg time="2025-08-17T19:44:43.249954" level="INFO">POST Response : url=https://points-app-backend.vercel.app/cadastro 
+ status=400, reason=Bad Request 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Content-Length': '38', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Sun, 17 Aug 2025 22:44:27 GMT', 'Etag': 'W/"26-MA+lncNq9iPyqVsf0a7Ul4FWBdQ"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'gru1::iad1::9pnjr-1755470667492-2cbc97c0ad36'} 
+ body={"error":"Nome completo obrigatório"} 
+ </msg>
+<msg time="2025-08-17T19:44:43.249954" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/cadastro</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-08-17T19:44:42.968730" elapsed="0.281224">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.249954" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${payload}</arg>
+<status status="FAIL" start="2025-08-17T19:44:42.968730" elapsed="0.282210">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.250940" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>11111111111</arg>
+<arg>Fulano da Silva</arg>
+<arg>invalido+cpf@example.com</arg>
+<status status="FAIL" start="2025-08-17T19:44:42.968730" elapsed="0.282210">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.251228" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-08-17T19:44:42.967730" elapsed="0.283498">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</test>
+<test id="s1-s3-t2" name="Cadastro - Email duplicado" line="13">
+<kw name="Gen" owner="cpf">
+<msg time="2025-08-17T19:44:43.253243" level="INFO">${cpf} = 94268126520</msg>
+<var>${cpf}</var>
+<status status="PASS" start="2025-08-17T19:44:43.253243" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-08-17T19:44:43.253945" level="INFO">${email} = dup+94268126520@example.com</msg>
+<var>${email}</var>
+<arg>dup+${cpf}@example.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-08-17T19:44:43.253945" elapsed="0.000000"/>
+</kw>
+<kw name="Register User" owner="auth">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-17T19:44:43.254948" level="INFO">${payload} = {'cpf': '94268126520', 'email': 'Teste Duplicado', 'senha': 'dup+94268126520@example.com'}</msg>
+<var>${payload}</var>
+<arg>cpf=${cpf}</arg>
+<arg>email=${email}</arg>
+<arg>senha=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-17T19:44:43.254948" elapsed="0.000000"/>
+</kw>
+<kw name="Fazer Cadastro" owner="auth">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:43.454712" level="INFO">POST Request : url=https://points-app-backend.vercel.app/cadastro 
+ path_url=/cadastro 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '90', 'Content-Type': 'application/json'} 
+ body=b'{"cpf": "94268126520", "email": "Teste Duplicado", "senha": "dup+94268126520@example.com"}' 
+ </msg>
+<msg time="2025-08-17T19:44:43.454712" level="INFO">POST Response : url=https://points-app-backend.vercel.app/cadastro 
+ status=400, reason=Bad Request 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Content-Length': '38', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Sun, 17 Aug 2025 22:44:27 GMT', 'Etag': 'W/"26-MA+lncNq9iPyqVsf0a7Ul4FWBdQ"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'gru1::iad1::8zqwp-1755470667688-053634987447'} 
+ body={"error":"Nome completo obrigatório"} 
+ </msg>
+<msg time="2025-08-17T19:44:43.454712" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/cadastro</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-08-17T19:44:43.254948" elapsed="0.200870">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.455818" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${payload}</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.254948" elapsed="0.200870">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.455818" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${cpf}</arg>
+<arg>Teste Duplicado</arg>
+<arg>${email}</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.253945" elapsed="0.201873">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.456831" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${token}</var>
+<arg>${resp.json()}</arg>
+<arg>confirmToken</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.457829" elapsed="0.000000"/>
+</kw>
+<kw name="Confirm Email">
+<arg>${token}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.458360" elapsed="0.000000"/>
+</kw>
+<kw name="Gen" owner="cpf">
+<var>${cpf2}</var>
+<status status="NOT RUN" start="2025-08-17T19:44:43.458360" elapsed="0.000000"/>
+</kw>
+<kw name="Register User" owner="auth">
+<var>${resp}</var>
+<arg>${cpf2}</arg>
+<arg>Outro Nome</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.458360" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.459476" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-08-17T19:44:43.252250" elapsed="0.208605">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</test>
+<test id="s1-s3-t3" name="Login - senha errada" line="25">
+<kw name="Gen" owner="cpf">
+<msg time="2025-08-17T19:44:43.462910" level="INFO">${cpf} = 99153234251</msg>
+<var>${cpf}</var>
+<status status="PASS" start="2025-08-17T19:44:43.462503" elapsed="0.000407"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-08-17T19:44:43.463004" level="INFO">${email} = user.badpass+99153234251@example.com</msg>
+<var>${email}</var>
+<arg>user.badpass+${cpf}@example.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-08-17T19:44:43.463004" elapsed="0.000000"/>
+</kw>
+<kw name="Register User" owner="auth">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-17T19:44:43.464224" level="INFO">${payload} = {'cpf': '99153234251', 'email': 'User Bad Pass', 'senha': 'user.badpass+99153234251@example.com'}</msg>
+<var>${payload}</var>
+<arg>cpf=${cpf}</arg>
+<arg>email=${email}</arg>
+<arg>senha=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-17T19:44:43.464224" elapsed="0.000000"/>
+</kw>
+<kw name="Fazer Cadastro" owner="auth">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:43.659493" level="INFO">POST Request : url=https://points-app-backend.vercel.app/cadastro 
+ path_url=/cadastro 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '97', 'Content-Type': 'application/json'} 
+ body=b'{"cpf": "99153234251", "email": "User Bad Pass", "senha": "user.badpass+99153234251@example.com"}' 
+ </msg>
+<msg time="2025-08-17T19:44:43.659493" level="INFO">POST Response : url=https://points-app-backend.vercel.app/cadastro 
+ status=400, reason=Bad Request 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Content-Length': '38', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Sun, 17 Aug 2025 22:44:27 GMT', 'Etag': 'W/"26-MA+lncNq9iPyqVsf0a7Ul4FWBdQ"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'gru1::iad1::9pnjr-1755470667890-0a58d2c8629d'} 
+ body={"error":"Nome completo obrigatório"} 
+ </msg>
+<msg time="2025-08-17T19:44:43.659493" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/cadastro</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-08-17T19:44:43.465220" elapsed="0.196275">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.661495" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${payload}</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.465220" elapsed="0.196275">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.661495" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${cpf}</arg>
+<arg>User Bad Pass</arg>
+<arg>${email}</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.464224" elapsed="0.198266">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${token}</var>
+<arg>${resp.json()}</arg>
+<arg>confirmToken</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.662490" elapsed="0.000000"/>
+</kw>
+<kw name="Confirm Email">
+<arg>${token}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.663487" elapsed="0.000000"/>
+</kw>
+<kw name="Login">
+<var>${resp}</var>
+<arg>${email}</arg>
+<arg>wrongPass@123</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.664492" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.664492" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-08-17T19:44:43.461952" elapsed="0.203968">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</test>
+<test id="s1-s3-t4" name="Autorização - sem token" line="34">
+<kw name="Authorized GET" owner="keywords">
+<kw name="Consultar Saldo Pontos" owner="keywords">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:43.671917" level="FAIL">AttributeError: 'str' object has no attribute 'items'</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/points/saldo</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-08-17T19:44:43.670640" elapsed="0.006209">AttributeError: 'str' object has no attribute 'items'</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.676849" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${headers}</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.669500" elapsed="0.008353">AttributeError: 'str' object has no attribute 'items'</status>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.677853" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>/points/saldo</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.668932" elapsed="0.008921">AttributeError: 'str' object has no attribute 'items'</status>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.678850" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-08-17T19:44:43.667302" elapsed="0.012553">AttributeError: 'str' object has no attribute 'items'</status>
+</test>
+<test id="s1-s3-t5" name="Autorização - token inválido" line="38">
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-08-17T19:44:43.685940" level="INFO">${AUTH_TOKEN} = invalid.token.here</msg>
+<arg>${AUTH_TOKEN}</arg>
+<arg>invalid.token.here</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-08-17T19:44:43.684855" elapsed="0.001085"/>
+</kw>
+<kw name="Authorized GET" owner="keywords">
+<kw name="Consultar Saldo Pontos" owner="keywords">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:43.687899" level="FAIL">AttributeError: 'str' object has no attribute 'items'</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/points/saldo</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-08-17T19:44:43.686910" elapsed="0.002939">AttributeError: 'str' object has no attribute 'items'</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.689849" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${headers}</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.686910" elapsed="0.003941">AttributeError: 'str' object has no attribute 'items'</status>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.690851" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>/points/saldo</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.686910" elapsed="0.003941">AttributeError: 'str' object has no attribute 'items'</status>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.691390" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-08-17T19:44:43.683827" elapsed="0.008037">AttributeError: 'str' object has no attribute 'items'</status>
+</test>
+<test id="s1-s3-t6" name="Enviar pontos - saldo insuficiente" line="43">
+<kw name="Gen" owner="cpf">
+<msg time="2025-08-17T19:44:43.694874" level="INFO">${cpf} = 77344224895</msg>
+<var>${cpf}</var>
+<status status="PASS" start="2025-08-17T19:44:43.693869" elapsed="0.001005"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-08-17T19:44:43.694874" level="INFO">${email} = user.low+77344224895@example.com</msg>
+<var>${email}</var>
+<arg>user.low+${cpf}@example.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-08-17T19:44:43.694874" elapsed="0.000000"/>
+</kw>
+<kw name="Register User" owner="auth">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-17T19:44:43.696874" level="INFO">${payload} = {'cpf': '77344224895', 'email': 'User Low', 'senha': 'user.low+77344224895@example.com'}</msg>
+<var>${payload}</var>
+<arg>cpf=${cpf}</arg>
+<arg>email=${email}</arg>
+<arg>senha=${senha}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-17T19:44:43.695871" elapsed="0.001003"/>
+</kw>
+<kw name="Fazer Cadastro" owner="auth">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-08-17T19:44:43.854859" level="INFO">POST Request : url=https://points-app-backend.vercel.app/cadastro 
+ path_url=/cadastro 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '88', 'Content-Type': 'application/json'} 
+ body=b'{"cpf": "77344224895", "email": "User Low", "senha": "user.low+77344224895@example.com"}' 
+ </msg>
+<msg time="2025-08-17T19:44:43.854859" level="INFO">POST Response : url=https://points-app-backend.vercel.app/cadastro 
+ status=400, reason=Bad Request 
+ headers={'Cache-Control': 'public, max-age=0, must-revalidate', 'Content-Length': '38', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Sun, 17 Aug 2025 22:44:28 GMT', 'Etag': 'W/"26-MA+lncNq9iPyqVsf0a7Ul4FWBdQ"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'gru1::iad1::tks9k-1755470668122-f1838333b0dd'} 
+ body={"error":"Nome completo obrigatório"} 
+ </msg>
+<msg time="2025-08-17T19:44:43.854859" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/cadastro</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-08-17T19:44:43.697521" elapsed="0.158358">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.855879" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${payload}</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.696874" elapsed="0.159005">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="NOT RUN" start="2025-08-17T19:44:43.855879" elapsed="0.000000"/>
+</return>
+<var>${resp}</var>
+<arg>${cpf}</arg>
+<arg>User Low</arg>
+<arg>${email}</arg>
+<status status="FAIL" start="2025-08-17T19:44:43.695871" elapsed="0.160008">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${token}</var>
+<arg>${resp.json()}</arg>
+<arg>confirmToken</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.856872" elapsed="0.000000"/>
+</kw>
+<kw name="Confirm Email">
+<arg>${token}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.856872" elapsed="0.000000"/>
+</kw>
+<kw name="Login">
+<var>${resp}</var>
+<arg>${email}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.856872" elapsed="0.000998"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${token}</var>
+<arg>${resp.json()}</arg>
+<arg>token</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.857870" elapsed="0.000000"/>
+</kw>
+<kw name="Set Auth Token">
+<arg>${token}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.857870" elapsed="0.000000"/>
+</kw>
+<kw name="Gen" owner="cpf">
+<var>${cpf_b}</var>
+<status status="NOT RUN" start="2025-08-17T19:44:43.857870" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${email_b}</var>
+<arg>user.low.dest+${cpf_b}@example.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.858899" elapsed="0.000000"/>
+</kw>
+<kw name="Register User" owner="auth">
+<var>${resp}</var>
+<arg>${cpf_b}</arg>
+<arg>User Dest</arg>
+<arg>${email_b}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.858899" elapsed="0.000000"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<var>${token_b}</var>
+<arg>${resp.json()}</arg>
+<arg>confirmToken</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.859879" elapsed="0.000000"/>
+</kw>
+<kw name="Confirm Email">
+<arg>${token_b}</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.859879" elapsed="0.000000"/>
+</kw>
+<kw name="Send Points" owner="keywords">
+<var>${resp}</var>
+<arg>${cpf_b}</arg>
+<arg>200</arg>
+<status status="NOT RUN" start="2025-08-17T19:44:43.859879" elapsed="0.001024"/>
+</kw>
+<kw name="Should Not Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are equal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-08-17T19:44:43.860903" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2025-08-17T19:44:43.693869" elapsed="0.167034">HTTPError: 400 Client Error: Bad Request for url: https://points-app-backend.vercel.app/cadastro</status>
+</test>
+<doc>Testes negativos e de segurança/autorização.</doc>
+<status status="FAIL" start="2025-08-17T19:44:42.955125" elapsed="0.907788"/>
+</suite>
+<status status="FAIL" start="2025-08-17T19:44:41.719987" elapsed="2.144936"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="9" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="0" fail="9" skip="0">Tests</stat>
+<stat name="Caixinha And Points" id="s1-s1" pass="0" fail="2" skip="0">Tests.Caixinha And Points</stat>
+<stat name="E2E Journeys" id="s1-s2" pass="0" fail="1" skip="0">Tests.E2E Journeys</stat>
+<stat name="Negative Tests" id="s1-s3" pass="0" fail="6" skip="0">Tests.Negative Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

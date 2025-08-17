@@ -2,7 +2,8 @@
 Documentation     Testes negativos e de segurança/autorização.
 Resource          ../resources/keywords.resource
 Resource          ../resources/auth.resource
-Suite Setup       Create API Session
+Suite Setup    Criar Sessão
+
 
 *** Test Cases ***
 Cadastro - CPF inválido

@@ -2,7 +2,7 @@
 Documentation     Jornadas ponta-a-ponta seguindo a documentação oficial.
 Resource          ../resources/keywords.resource
 Resource          ../resources/auth.resource
-Suite Setup       Create API Session
+Suite Setup    Criar Sessão
 Test Setup        Set Test Variable    ${NOW}    ${None}
 
 *** Test Cases ***

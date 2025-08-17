@@ -1,0 +1,5 @@
+=== register_user ===
+REQUEST: {'cpf': '31306496977', 'full_name': 'User Pig', 'email': 'user.caixinha+31306496977@example.com', 'password': 'Senha@123', 'confirmPassword': 'Senha@123'}
+STATUS: 201
+HEADERS: {'Cache-Control': 'public, max-age=0, must-revalidate', 'Content-Length': '255', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Sun, 17 Aug 2025 22:11:20 GMT', 'Etag': 'W/"ff-9sK1vG0a1foSelgScNhKSHY00II"', 'Server': 'Vercel', 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload', 'X-Powered-By': 'Express', 'X-Vercel-Cache': 'MISS', 'X-Vercel-Id': 'gru1::iad1::j8zrb-1755468679537-3398ef41ad0e'}
+BODY: {"message":"Cadastro realizado com sucesso.","confirmToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTFkODU2Ny0yNjEzLTQ3YzYtYWU0OS0wMmMzMTgxYjNkMWEiLCJpYXQiOjE3NTU0Njg2ODAsImV4cCI6MTc1NTU1NTA4MH0.dXpvxzG923r0WZnOPB9-dIW1M1nqMhwKL48xkvPu7vw"}
